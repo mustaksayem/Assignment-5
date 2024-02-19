@@ -21,16 +21,16 @@ const tickets = document.getElementsByClassName("kbd");
 for (let index = 0; index < tickets.length; index++) {
     const ticket = tickets[index];
     ticket.addEventListener("click", function (event) {
-        
-     
+
+
 
         const elementId = event.target.getAttribute("id");
 
-        if (preventDouble <4){
+        if (preventDouble < 4) {
             const buttonElement = document.getElementById(elementId);
             if (buttonElement) {
                 buttonElement.disabled = true;
-            } 
+            }
             preventDouble++;
         }
 
@@ -61,14 +61,14 @@ for (let index = 0; index < tickets.length; index++) {
 
             updateTotalPrice();
         } else {
-            alert("Please Select a sit");
+            alert("You can't buy more than 4 tickets");
         }
 
 
         // Total Seat Left Number
-        const totalSeat = document.getElementById('seatsLeft');
-        const minSeats = 36;
-        if (parseInt(totalSeat.innerText) > minSeats) {
+        const totalSeat = document.getElementById('totalSeatsLeft');
+
+        if (parseInt(totalSeat.innerText) > 36) {
             let minusSeatNumber = parseInt(totalSeat.innerText) - 1;
             totalSeat.innerText = minusSeatNumber;
         }
@@ -91,7 +91,7 @@ for (let index = 0; index < tickets.length; index++) {
 const couponBtn = document.getElementById('coupon-btn')
 couponBtn.addEventListener("click", function () {
     const couponElement = document.getElementById("coupon-input").value;
-    if (total == 550) {
+    if (total == 2200) {
         if (couponElement === "NEW15") {
             couponCode(0.15);
         }
@@ -132,15 +132,52 @@ function couponCode(elementId) {
 
 }
 
+let varInputNumber = 0;
 
-function modalHide() {
-    const addElement = document.getElementById('bodyID');
-    addElement.classList.add('opacity-0');
+function getValue() {
+
+    var inputField = document.getElementById("phoneNumber");
+    var value = inputField.value;
+    varInputNumber = value.length;
+   
+
+  }
+
+function buttonModal() {
+
+    
+    if (seatCount <= 0 ) {
+        alert("First select a seat");
+        buttonIdDisable.disabled = true;
+    } else {
+
+        const addElement1 = document.getElementById('section-body');
+        addElement1.classList.add('opacity-0');
+
+        
+
+
+    }
 
 }
 
-function modalShow() {
-    const addElement = document.getElementById('bodyID');
-    addElement.classList.remove('opacity-0');
+function modalVisible (){
+    const addElement = document.getElementById('section-body');
+        addElement.classList.remove('opacity-0');
 
+
+}
+
+
+
+
+
+
+function bannerButton() {
+
+    var section = document.getElementById('phParibahan')
+    if (section) {
+        var offsetTop = section.offsetTop;
+        section.scrollIntoView({ top: offsetTop, behavior: 'smooth' });
+    }
 }
