@@ -1,20 +1,3 @@
-
-function updateTotalPrice() {
-    total = 0;
-    const ticketPrices = document.getElementsByClassName('ticketPrice');
-    for (let i = 0; i < ticketPrices.length; i++) {
-        total += parseInt(ticketPrices[i].innerText);
-    }
-
-    // Update total price display
-    const totalPriceElement = document.getElementById('totalPrice');
-    totalPriceElement.innerText = total;
-
-    let grandTotalElement = document.getElementById("grandTotal");
-    grandTotalElement.innerText = total;
-
-}
-// Code Select Seat and Price 
 let seatCount = 0;
 let preventDouble = 0;
 const tickets = document.getElementsByClassName("kbd");
@@ -45,27 +28,38 @@ for (let index = 0; index < tickets.length; index++) {
             event.target.style.color = "white";
         }
 
-        const ticketClassShow = document.getElementById('ticketClassShow');
+        const ticketClassShow = document.getElementById('classShow');
         const ticketClass = document.createElement("p");
         ticketClass.innerText = "Economy";
         if (document.getElementsByClassName('ticketPrice').length < 4) {
             ticketClassShow.appendChild(ticketClass);
         }
 
-        // Update total ticket price after adding ticket
         if (document.getElementsByClassName('ticketPrice').length < 4) {
             const ticketPrice = document.createElement("p");
             ticketPrice.innerText = "550";
             ticketPrice.classList.add('ticketPrice');
-            ticketPriceShow.appendChild(ticketPrice);
+            priceShow.appendChild(ticketPrice);
 
             updateTotalPrice();
         } else {
             alert("You can't buy more than 4 tickets");
         }
 
+        function updateTotalPrice() {
+            total = 0;
+            const ticketPrices = document.getElementsByClassName('ticketPrice');
+            for (let i = 0; i < ticketPrices.length; i++) {
+                total += parseInt(ticketPrices[i].innerText);
+            }
+            const totalPriceElement = document.getElementById('totalPrice');
+            totalPriceElement.innerText = total;
+        
+            let grandTotalElement = document.getElementById("grandTotal");
+            grandTotalElement.innerText = total;
+        
+        }
 
-        // Total Seat Left Number
         const totalSeat = document.getElementById('totalSeatsLeft');
 
         if (parseInt(totalSeat.innerText) > 36) {
@@ -73,7 +67,6 @@ for (let index = 0; index < tickets.length; index++) {
             totalSeat.innerText = minusSeatNumber;
         }
 
-        //Total Buy Ticket Number 
         if (parseInt(document.getElementById('selectedSeat').innerText) < 4) {
             seatCount++;
             const currentSelectedSeat = document.getElementById('selectedSeat');
@@ -87,8 +80,7 @@ for (let index = 0; index < tickets.length; index++) {
 
 }
 
-// Coupon button click event listener
-const couponBtn = document.getElementById('coupon-btn')
+const couponBtn = document.getElementById('discount-btn')
 couponBtn.addEventListener("click", function () {
     const couponElement = document.getElementById("coupon-input").value;
     if (total == 2200) {
@@ -132,16 +124,16 @@ function couponCode(elementId) {
 
 }
 
-let varInputNumber = 0;
+// let varInputNumber = 0;
 
-function getValue() {
+// function getValue() {
 
-    var inputField = document.getElementById("phoneNumber");
-    var value = inputField.value;
-    varInputNumber = value.length;
+//     var inputField = document.getElementById("phoneNumber");
+//     var value = inputField.value;
+//     varInputNumber = value.length;
    
 
-  }
+//   }
 
 function buttonModal() {
 
@@ -168,11 +160,6 @@ function modalVisible (){
 
 }
 
-
-
-
-
-
 function bannerButton() {
 
     var section = document.getElementById('phParibahan')
@@ -181,3 +168,22 @@ function bannerButton() {
         section.scrollIntoView({ top: offsetTop, behavior: 'smooth' });
     }
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var nameInput = document.getElementById("name-Input");
+    var phoneInput = document.getElementById("phone-Input");
+    var nextButton = document.getElementById("next-button");
+
+    function checkValidity() {
+        if (nameInput.value.trim() !== "" && phoneInput.value.trim() !== "") {
+            nextButton.disabled = false;
+        } else {
+            nextButton.disabled = true;
+        }
+    }
+
+    nameInput.addEventListener('input', checkValidity);
+    phoneInput.addEventListener('input', checkValidity);
+});
